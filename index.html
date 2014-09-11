@@ -1,0 +1,83 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The HTML5 Herald</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <style>
+  	#map {
+  		width:900px;
+  		height:500px;
+  		margin:0 auto;
+  	}
+
+  	body {
+  		background:#444;
+  	}
+
+  	path {
+  	stroke: white;
+		
+		stroke-width: 2px;
+  	}
+
+  </style>
+</head>
+
+<body>
+	Hello!
+	<div id = 'map'>
+	</div>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+  	var map = L.map('map').setView([40.706363, -74.009096], 11);
+
+  		L.tileLayer('https://{s}.tiles.mapbox.com/v3/cwhong.map-hziyh867/{z}/{x}/{y}.png', {
+		    attribution: 'Attribution goes here'
+		}).addTo(map);
+
+  	var devBootcampMarker = L.marker([40.706363, -74.009096]).addTo(map);
+  	devBootcampMarker.bindPopup("<b>Dev Bootcamp</b><br>These guys host BetaNYC!");
+
+
+		var district_boundary = new L.geoJson();
+		district_boundary.addTo(map);
+
+		$.ajax({
+		dataType: "json",
+		url: "districts.geojson",
+		success: function(data) {
+		    
+
+			L.geoJson(data.features, {
+    style: function(feature) {
+    		console.log(feature.properties.BoroCD);
+
+    		if(feature.properties.Shape_Area<61000000) {
+    			return {color: "red"};
+    		} else {
+    			return {color: "green"}
+    		}
+
+
+        
+    }
+		}).addTo(map);
+
+		}
+		}).error(function() {});
+
+			
+
+  </script>
+</body>
+</html>
