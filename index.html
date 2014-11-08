@@ -136,7 +136,7 @@
       url: "README.md",
       success: function(data) {
         var converter = new Showdown.converter();
-        $('#readme').html(converer.makeHtml(data));
+        $('#readme').html(converter.makeHtml(data));
       },
       error: function (xhr, ajaxOptions, thrownError) {
 	console.log(xhr.status);
