@@ -22,6 +22,8 @@
       width: 40%;
       height: 100vh;
       float: right;
+      overflow: scroll; 
+      overflow-x:hidden;
     }
 
     body, html {
@@ -54,6 +56,7 @@
   </div>
 
   <script src="js/showdown.js"></script>
+  <script src="js/extensions/github.js"></script>
   <script src="./leaflet.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script>
@@ -135,7 +138,7 @@
       dataType: "text",
       url: "README.md",
       success: function(data) {
-        var converter = new Showdown.converter();
+        var converter = new Showdown.converter({extensions: 'github'});
         $('#readme').html(converter.makeHtml(data));
       },
       error: function (xhr, ajaxOptions, thrownError) {
