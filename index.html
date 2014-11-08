@@ -135,7 +135,7 @@
       dataType: "text",
       url: "README.md",
       success: function(data) {
-        $('#readme').text(data);
+        $('#readme').html(data);
       },
       error: function (xhr, ajaxOptions, thrownError) {
 	console.log(xhr.status);
