@@ -57,7 +57,10 @@
       maxNativeZoom:18
     }).addTo(map);
 
-    var bromley = L.tileLayer.wms("/geoserver/tiger/wms",
+
+    var davidServer = "http://data.getnycinfo.com";
+
+    var bromley = L.tileLayer.wms(davidServer+"/geoserver/tiger/wms",
       {service: 'WMS',
        version: '1.1.0',
        format: 'image/png',
@@ -69,7 +72,7 @@
     bromley.addTo(map);
 
     //load polygons from postgis
-    var geojsonurl = "/geoserver/tiger/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tiger:small%20parcels&maxFeatures=90&outputFormat=application/json";
+    var geojsonurl = davidServer+"/geoserver/tiger/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tiger:small%20parcels&maxFeatures=90&outputFormat=application/json";
     $.ajax({
       dataType: "json",
       url: geojsonurl,
@@ -100,7 +103,7 @@
 
 
     //load points
-    var centroidsurl = "/geoserver/tiger/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tiger:small%20parcel%20centroids&maxFeatures=90&outputFormat=application/json";
+    var centroidsurl = davidServer+"/geoserver/tiger/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tiger:small%20parcel%20centroids&maxFeatures=90&outputFormat=application/json";
     $.ajax({
       dataType: "json",
       url: centroidsurl,
