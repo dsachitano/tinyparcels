@@ -132,7 +132,7 @@
 
     //load readme Markdown
     $.ajax({
-      dataType: "text/plain",
+      dataType: "text",
       url: "README.md",
       success: function(data) {
         $('#readme').text(data);
