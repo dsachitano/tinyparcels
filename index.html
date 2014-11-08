@@ -57,6 +57,17 @@
       maxNativeZoom:18
     }).addTo(map);
 
+    var bromley = L.tileLayer.wms("/geoserver/tiger/wms",
+      {service: 'WMS',
+       version: '1.1.0',
+       format: 'image/png',
+       //request: 'GetMap',
+       transparent: 'true',
+       tiled: 'true',
+       layers: 'tiger:transparent_geo_map'});
+
+    bromley.addTo(map);
+
 
       function onEachFeature(feature, layer) {
         layer.bindPopup(
