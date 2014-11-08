@@ -1,7 +1,7 @@
 Small Parcels of NYC
 ============
 
-This project is an extension of Chris Whong's [tiny parcels map](http://chriswhong.github.io/tinyparcels/), which he used in his [search for Hess' Triangle](http://chriswhong.com/local/in-search-of-hess-triangle-part-2/).  I wanted to use his map as a starting point, but build it on the geostack I've started developing in [another repo of mine](https://github.com/dsachitano/routingserver).  My plan was roughly to maintain the same featureset (small parcel polygons, and markers at their centroids displaying select fields from the PLUTO dataset), but do it using my app server and pull live data from postgis instead of using static hardcoded files.  I then wanted to create a tile layer using the Bromley Atlas that could be displayed over the modern day basemap layer, to give some of the historical context that Chris [dives into on his blog](https://github.com/dsachitano/routingserver/blob/master/java_app/application/src/main/java/com/thebaseballrun/webui/resources/HelloWorldResource.java).
+This project is an extension of Chris Whong's [tiny parcels map](http://chriswhong.github.io/tinyparcels/), which he used in his [search for Hess' Triangle](http://chriswhong.com/local/in-search-of-hess-triangle-part-2/).  I wanted to use his map as a starting point, but build it on the geostack I've started developing in [another repo of mine](https://github.com/dsachitano/routingserver).  My plan was roughly to maintain the same featureset (small parcel polygons, and markers at their centroids displaying select fields from the PLUTO dataset), but do it using my app server and pull live data from postgis instead of using static hardcoded files.  I then wanted to create a tile layer using the Bromley Atlas that could be displayed over the modern day basemap layer, to give some of the historical context that Chris [dives into on his blog](http://chriswhong.com/open-data/in-search-of-hess-triangle-part-1/).
 
 ## PLUTO Data Processing
 
@@ -50,6 +50,6 @@ L.tileLayer.wms("http://data.getnycinfo.com/geoserver/tiger/wms",
 
 ## Putting it all together
 
-To actually deploy this code, I used an Amazon Linux EC2 instance.  Once it was booted, I cloned my baseballrouter repo, then cloned this repo into the `/static` dir of the baseballrouter repo, so that the html with this map could be loaded via the `/static/tinyparcels/` path.  With the data in place, I just had to run `fig up` to start the geostack, and then perform the data importing procedures mentioned above.
+To actually deploy this code, I used an Amazon Linux EC2 instance.  Once it was booted, I cloned my `routingserver` repo, then cloned this repo into the `/static` dir of the `routingserver` repo, so that the html with this map could be loaded via the `/static/tinyparcels/` path.  With the data in place, I just had to run `fig up` to start the geostack, and then perform the data importing procedures mentioned above.
 
 This code is currently deployed on my own server and can be viewed at: [http://data.getnycinfo.com/static/tinyparcels/](http://data.getnycinfo.com/static/tinyparcels/)
