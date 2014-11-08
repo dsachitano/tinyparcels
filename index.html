@@ -57,7 +57,9 @@
 <body>
   <div id = 'map'>
   </div>
-  <div id = 'readme' class="markdown-body">
+  <div id = 'readme'>
+    <div id = 'putTheMarkdownHere' class="markdown-body">
+    </div>
   </div>
 
   <script src="js/marked.min.js"></script>
@@ -142,7 +144,7 @@
       dataType: "text",
       url: "README.md",
       success: function(data) {
-        $('#readme').html(marked(data));
+        $('#putTheMarkdownHere').html(marked(data));
       },
       error: function (xhr, ajaxOptions, thrownError) {
 	console.log(xhr.status);
