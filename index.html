@@ -11,14 +11,24 @@
 
   <link rel="stylesheet" href="./leaflet.css" />
   <style>
-    #map, body, html {
-      width:100%;
-      height:100%;
-      margin:0;
+
+    #map {
+      width:60%;
+      height: 100vh;
+      float:left;
     }
 
-    body {
-      background:#444;
+    #readme {
+      width: 40%;
+      height: 100vh;
+      float: right;
+    }
+
+    body, html {
+      background:#ddd;
+      height:100%;
+      padding: 0;
+      margin: 0;
     }
 
     path {
@@ -40,8 +50,12 @@
 <body>
   <div id = 'map'>
   </div>
+  <div id = 'readme' data-markdown>
+  </div>
+
+  <script src="js/data-markdown.user.js"></script>
   <script src="./leaflet.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script>
   //This map contains parcels that are under 100 sf in Manhattan according to 2014 Pluto Data
 
@@ -115,6 +129,19 @@
         }).addTo(map);
       }
     }).error(function() {});
+
+    //load readme Markdown
+    $.ajax({
+      dataType: "text/plain",
+      url: "README.md",
+      success: function(data) {
+        $('#readme').text(data);
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+	console.log(xhr.status);
+	console.log(thrownError);
+      }
+    });
 
 
   </script>
