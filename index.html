@@ -50,10 +50,10 @@
 <body>
   <div id = 'map'>
   </div>
-  <div id = 'readme' data-markdown>
+  <div id = 'readme'>
   </div>
 
-  <script src="js/data-markdown.user.js"></script>
+  <script src="js/showdown.js"></script>
   <script src="./leaflet.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script>
@@ -135,7 +135,8 @@
       dataType: "text",
       url: "README.md",
       success: function(data) {
-        $('#readme').html(data);
+        var converter = new Showdown.converter();
+        $('#readme').html(converer.makeHtml(data));
       },
       error: function (xhr, ajaxOptions, thrownError) {
 	console.log(xhr.status);
