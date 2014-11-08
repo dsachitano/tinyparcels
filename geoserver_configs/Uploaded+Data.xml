@@ -1,0 +1,40 @@
+<dataStore>
+  <name>Uploaded Data</name>
+  <type>PostGIS</type>
+  <enabled>true</enabled>
+  <workspace>
+    <name>tiger</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://geoserver:8080/geoserver/rest/workspaces/tiger.xml" type="application/xml"/>
+  </workspace>
+  <connectionParameters>
+    <entry key="Connection timeout">20</entry>
+    <entry key="port">5432</entry>
+    <entry key="passwd">crypt1:tqmENffvOqWKLNmjI+P4+w==</entry>
+    <entry key="dbtype">postgis</entry>
+    <entry key="host">postgis_db</entry>
+    <entry key="Evictor tests per run">3</entry>
+    <entry key="validate connections">true</entry>
+    <entry key="encode functions">false</entry>
+    <entry key="max connections">10</entry>
+    <entry key="Support on the fly geometry simplification">true</entry>
+    <entry key="database">uploaded_data</entry>
+    <entry key="Max connection idle time">300</entry>
+    <entry key="Evictor run periodicity">300</entry>
+    <entry key="namespace">http://www.census.gov</entry>
+    <entry key="schema">public</entry>
+    <entry key="Test while idle">true</entry>
+    <entry key="Loose bbox">true</entry>
+    <entry key="Expose primary keys">false</entry>
+    <entry key="create database">false</entry>
+    <entry key="Max open prepared statements">50</entry>
+    <entry key="fetch size">1000</entry>
+    <entry key="preparedStatements">false</entry>
+    <entry key="Estimated extends">true</entry>
+    <entry key="user">docker</entry>
+    <entry key="min connections">1</entry>
+  </connectionParameters>
+  <__default>false</__default>
+  <featureTypes>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://geoserver:8080/geoserver/rest/workspaces/tiger/datastores/Uploaded+Data/featuretypes.xml" type="application/xml"/>
+  </featureTypes>
+</dataStore>

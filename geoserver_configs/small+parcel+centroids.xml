@@ -1,0 +1,95 @@
+<featureType>
+  <name>small parcel centroids</name>
+  <nativeName>small parcel centroids</nativeName>
+  <namespace>
+    <name>tiger</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://geoserver:8080/geoserver/rest/namespaces/tiger.xml" type="application/xml"/>
+  </namespace>
+  <title>small parcel centroids</title>
+  <keywords>
+    <string>small parcel centroids</string>
+    <string>features</string>
+  </keywords>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>-74.013826373404</minx>
+    <maxx>-73.929871951583</maxx>
+    <miny>40.7070677346545</miny>
+    <maxy>40.855475378304</maxy>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-74.013826373404</minx>
+    <maxx>-73.929871951583</maxx>
+    <miny>40.7070677346545</miny>
+    <maxy>40.855475378304</maxy>
+    <crs>GEOGCS[&quot;WGS84(DD)&quot;, 
+  DATUM[&quot;WGS84&quot;, 
+    SPHEROID[&quot;WGS84&quot;, 6378137.0, 298.257223563]], 
+  PRIMEM[&quot;Greenwich&quot;, 0.0], 
+  UNIT[&quot;degree&quot;, 0.017453292519943295], 
+  AXIS[&quot;Geodetic longitude&quot;, EAST], 
+  AXIS[&quot;Geodetic latitude&quot;, NORTH]]</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="JDBC_VIRTUAL_TABLE">
+      <virtualTable>
+        <name>small parcel centroids</name>
+        <sql>SELECT ownername,address,block,bbl,SHAPE_Area, ST_Transform(ST_SetSRID(ST_Centroid(geom), 3628), 4326) AS geom FROM mnmappluto WHERE shape_area &lt; 100.0
+</sql>
+        <escapeSql>false</escapeSql>
+      </virtualTable>
+    </entry>
+  </metadata>
+  <store class="dataStore">
+    <name>Uploaded Data</name>
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://geoserver:8080/geoserver/rest/workspaces/tiger/datastores/Uploaded+Data.xml" type="application/xml"/>
+  </store>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <attributes>
+    <attribute>
+      <name>ownername</name>
+      <minOccurs>0</minOccurs>
+      <maxOccurs>1</maxOccurs>
+      <nillable>true</nillable>
+      <binding>java.lang.String</binding>
+    </attribute>
+    <attribute>
+      <name>address</name>
+      <minOccurs>0</minOccurs>
+      <maxOccurs>1</maxOccurs>
+      <nillable>true</nillable>
+      <binding>java.lang.String</binding>
+    </attribute>
+    <attribute>
+      <name>block</name>
+      <minOccurs>0</minOccurs>
+      <maxOccurs>1</maxOccurs>
+      <nillable>true</nillable>
+      <binding>java.lang.Integer</binding>
+    </attribute>
+    <attribute>
+      <name>bbl</name>
+      <minOccurs>0</minOccurs>
+      <maxOccurs>1</maxOccurs>
+      <nillable>true</nillable>
+      <binding>java.math.BigDecimal</binding>
+    </attribute>
+    <attribute>
+      <name>shape_area</name>
+      <minOccurs>0</minOccurs>
+      <maxOccurs>1</maxOccurs>
+      <nillable>true</nillable>
+      <binding>java.math.BigDecimal</binding>
+    </attribute>
+    <attribute>
+      <name>geom</name>
+      <minOccurs>0</minOccurs>
+      <maxOccurs>1</maxOccurs>
+      <nillable>true</nillable>
+      <binding>com.vividsolutions.jts.geom.Geometry</binding>
+    </attribute>
+  </attributes>
+</featureType>
