@@ -9,8 +9,10 @@ Here are the steps I followed for preparing my data for use in the map.
 
 1. Use my [drag and drop file uploader](https://github.com/dsachitano/routingserver/blob/master/static/upload.html) to upload the [MapPLUTO](http://www.nyc.gov/html/dcp/html/bytes/applbyte.shtml) shapefile.  My [backend java app](https://github.com/dsachitano/routingserver/blob/master/java_app/application/src/main/java/com/thebaseballrun/webui/resources/HelloWorldResource.java) then uses `shp2pgsql` and `psql` to load that data into PostGIS.
 2. Once the data is loaded into PostGIS, a layer can be added to geoserver using a custom SQL query to get what we want: all parcels under 100 sqft.  I created [a file](geoserver_configs/small+parcel+centroids.xml) that defines how this should work, which can be added to geoserver using their REST api, with a command like this:
+
 > curl -v -u admin -XPOST -H 'Content-Type: text/xml' -d @small+parcel+centroids.xml "http://geoserver:8080/geoserver/rest/workspaces/tiger/datastores/Uploaded+Data/featuretypes"
-3. Then all that was left is to change the ajax call that was loading the local json file to point at my geoserver url corresponding to the query layer we added in the last step.
+
+Then all that was left is to change the ajax call that was loading the local json file to point at my geoserver url corresponding to the query layer we added in the last step.
 
 ## Bromley Atlas Layer Processing
 
