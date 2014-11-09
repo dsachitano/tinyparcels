@@ -94,6 +94,46 @@
 
     bromley.addTo(map);
 
+    function computeBoxRadius(zoomLevel) {
+      if (zoomLevel <= 16) return 40; 
+      if (zoomLevel === 17) return 70;
+      if (zoomLevel === 18) return 120;
+      if (zoomLevel >= 19) return 160;
+    }
+
+
+    var xOffset = 0;
+    var yOffset = 0;
+
+    map.on('movestart', function(e) {
+      //console.log("move start at "+e.target.dragging._lastPos.x+","+e.target.dragging._lastPos.y);
+    });
+    map.on('move', function(e) {
+      //console.log("move start at "+e.target.dragging._lastPos.x+","+e.target.dragging._lastPos.y);
+      if (e.target.dragging._lastPos != null) {
+        xOffset = -(e.target.dragging._lastPos.x);
+        yOffset = -(e.target.dragging._lastPos.y);
+      }
+    });
+    map.on('moveend', function(e) {
+      //console.log("move end at "+e.target.dragging._lastPos.x+","+e.target.dragging._lastPos.y);
+    });
+
+    var bromParent = bromley._container;
+    $("#map").mousemove(function(e) {
+      var xcoord = e.clientX;
+      var ycoord = e.clientY;
+
+      var squareRadius = computeBoxRadius(map.getZoom());
+      bromParent.style.clip = 'rect('+(yOffset+ycoord-squareRadius)+'px ' 
+                                     +(xOffset+xcoord+squareRadius) + 'px '
+                                     +(yOffset+ycoord+squareRadius)+'px '
+                                     +(xOffset+xcoord-squareRadius)+'px)';
+
+      console.log("clip is: "+bromParent.style.clip);
+    });
+    
+
     //load polygons from postgis
     var geojsonurl = davidServer+"/geoserver/tiger/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tiger:small%20parcels&maxFeatures=90&outputFormat=application/json";
     $.ajax({
