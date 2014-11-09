@@ -105,18 +105,11 @@
     var xOffset = 0;
     var yOffset = 0;
 
-    map.on('movestart', function(e) {
-      //console.log("move start at "+e.target.dragging._lastPos.x+","+e.target.dragging._lastPos.y);
-    });
     map.on('move', function(e) {
-      //console.log("move start at "+e.target.dragging._lastPos.x+","+e.target.dragging._lastPos.y);
       if (e.target.dragging._lastPos != null) {
         xOffset = -(e.target.dragging._lastPos.x);
         yOffset = -(e.target.dragging._lastPos.y);
       }
-    });
-    map.on('moveend', function(e) {
-      //console.log("move end at "+e.target.dragging._lastPos.x+","+e.target.dragging._lastPos.y);
     });
 
     var bromParent = bromley._container;
@@ -129,8 +122,8 @@
                                      +(xOffset+xcoord+squareRadius) + 'px '
                                      +(yOffset+ycoord+squareRadius)+'px '
                                      +(xOffset+xcoord-squareRadius)+'px)';
+      bromParent.style.opacity = '0.7';
 
-      console.log("clip is: "+bromParent.style.clip);
     });
     
 
