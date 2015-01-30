@@ -127,55 +127,10 @@
     });
     
 
-    //load polygons from postgis
-    var geojsonurl = davidServer+"/geoserver/tiger/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tiger:small%20parcels&maxFeatures=90&outputFormat=application/json";
-    $.ajax({
-      dataType: "json",
-      url: geojsonurl,
-      success: function(data) {
-	var myLayer = L.geoJson(data);
-	map.addLayer(myLayer);
-      },
-      error: function (xhr, ajaxOptions, thrownError) {
-	console.log(xhr.status);
-	console.log(thrownError);
-      }
-    });
-
-
-      function onEachFeature(feature, layer) {
-        layer.bindPopup(
-          "<span class = 'address'>"
-          + feature.properties.address
-          + '</span><br/>Owner: '
-          + feature.properties.ownername
-          + '<br/>BBL: '
-          + feature.properties.bbl
-          + '<br/>Area: '
-          + (Math.round(feature.properties.shape_area * 10) / 10)
-          + ' sq.ft.'
-          );
-      }
-
-
-    //load points
-    var centroidsurl = davidServer+"/geoserver/tiger/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=tiger:small%20parcel%20centroids&maxFeatures=90&outputFormat=application/json";
-    $.ajax({
-      dataType: "json",
-      url: centroidsurl,
-      success: function(data) {
-        L.geoJson(data.features, {
-          style: function(feature) {
-          },
-          onEachFeature: onEachFeature
-        }).addTo(map);
-      }
-    }).error(function() {});
-
-    //load readme Markdown
+    //load Markdown
     $.ajax({
       dataType: "text",
-      url: "README.md",
+      url: "window.md",
       success: function(data) {
         $('#putTheMarkdownHere').html(marked(data));
       },
